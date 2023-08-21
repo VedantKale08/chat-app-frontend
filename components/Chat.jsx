@@ -19,7 +19,7 @@ import Lottie from "react-lottie";
 import { loaderOptions } from "@/lottieOptions/Options";
 import Loader from "./Loader";
 import { toast } from "react-toastify";
-const ENDPOINT = "http://localhost:3001";
+const ENDPOINT = "https://chat-app-backend-35u9.onrender.com";
 var socket, selectedChatCompare;
 
 function Chat({ data }) {
