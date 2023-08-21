@@ -7,10 +7,11 @@ import { RxCross2 } from "react-icons/rx";
 import Group from "@/lotties/group.png";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import AddGroupPopup from "./AddGroupPopup";
-import { getCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 import axios from "axios";
 import { updateChat } from "@/constants/apiEndpoints";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 const URL = process.env.NEXT_PUBLIC_URL;
 
 function Profile() {
@@ -21,7 +22,8 @@ function Profile() {
   const [popup, setPopup] = useState(false);
   const [members, setMembers] = useState([]);
   const setChatId = chatStore((state) => state.setChatId);
-
+  const router = useRouter();
+  
   useEffect(() => {
     if (isMobile) {
       const handlePopstate = function () {
@@ -135,6 +137,19 @@ function Profile() {
           {!selectedChat?.isGroupChat
             ? selectedChat?.email
             : "Group " + selectedChat?.users?.length + " participants"}
+        </span>
+        <span className="mt-10">
+          {selectedChat?._id === user?._id && (
+            <button
+              className="bg-red-500 text-white text-[14px] rounded-md px-2 py-1 hover:opacity-75"
+              onClick={() => {
+                deleteCookie("token");
+                router.push("/");
+              }}
+            >
+              Logout
+            </button>
+          )}
         </span>
       </div>
       {selectedChat?.isGroupChat && (

@@ -12,11 +12,13 @@ import { useUserStore } from "@/store/userStore";
 import { setCookie } from "cookies-next";
 import { defaultOptions1, maleOptions } from "@/lottieOptions/Options";
 import { login } from "@/constants/apiEndpoints";
+import Loader from "@/components/Loader";
 
 const URL = process.env.NEXT_PUBLIC_URL;
 
 export default function Home() {
   const [type, setType] = useState(true);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const setUser = useUserStore((state) => state.setUser);
 
@@ -26,7 +28,6 @@ export default function Home() {
     formState: { errors },
     reset,
   } = useForm();
-
 
   const togglePassword = (id) => {
     let input = document.getElementById(id);
@@ -40,20 +41,23 @@ export default function Home() {
 
   const submitData = async (data) => {
     try {
+      setLoading(true);
       const response = await axios.post(`${URL}${login}`, data);
       if (response?.data?.status) {
         setUser(response?.data);
         setCookie("token", response?.data?.token);
         reset();
         toast.success("Login Successful!");
-        setTimeout(() => {
-          router.push("/chat");
-        }, 1000);
+        // setTimeout(() => {
+        router.push("/chat");
+        setLoading(false);
+        // }, 1000);
       } else {
         toast.error(response?.data?.error);
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -61,12 +65,12 @@ export default function Home() {
     <div>
       {/* <LandingPage/> */}
       <div className="flex min-h-screen md:flex-row flex-col">
-        <div className="md:w-[60%] bg-[#f9818b] flex items-center justify-center">
+        <div className="md:w-[60%] bg-[#f9818b] md:flex items-center justify-center hidden">
           <div className="w-[60%] m-auto">
             <Lottie options={defaultOptions1} />
           </div>
         </div>
-        <div className="md:w-[40%] md:px-10 md:py-6 flex flex-col justify-center">
+        <div className="md:w-[40%] md:px-10 md:py-6 flex flex-col md:justify-center px-6 py-10 md:flex-none flex-1">
           <Image src={Logo} width={150} alt=""></Image>
           <p className="text-base font-extrabold pt-4">Log In</p>
           <p className="text-xs text-[#838186]">
@@ -80,8 +84,11 @@ export default function Home() {
             className="flex flex-col gap-4"
             onSubmit={handleSubmit(submitData)}
           >
-            <div className="w-1/2 m-auto">
+            <div className="w-1/2 m-auto md:block hidden">
               <Lottie options={maleOptions} />
+            </div>
+            <div className="py-10 m-auto block md:hidden">
+              <Lottie options={defaultOptions1} />
             </div>
             <div className="input-group w-full">
               <input
@@ -146,13 +153,14 @@ export default function Home() {
         </div>
       </div>
       <ToastContainer />
+      {loading && <Loader/>}
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
   const { token } = context.req.cookies;
-  if(token){
+  if (token) {
     return {
       redirect: {
         destination: `/chat`,

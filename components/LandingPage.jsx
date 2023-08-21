@@ -17,6 +17,7 @@ import {
   otherOptions,
 } from "@/lottieOptions/Options";
 import { registerUser } from "@/constants/apiEndpoints";
+import Loader from "./Loader";
 
 const API_URL = process.env.NEXT_PUBLIC_URL;
 
@@ -26,6 +27,7 @@ function LandingPage() {
   const [genderError, setGenderError] = useState("");
   const [type, setType] = useState(true);
   const [confirmType, setConfirmType] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
 
   const {
@@ -44,20 +46,25 @@ function LandingPage() {
       setGenderError("Please select a gender");
     } else {
       try {
+        setLoading(true);
         const response = await axios.post(`${API_URL}${registerUser}`, data);
         if (response?.data?.status) {
           setUser(response?.data);
           setCookie("token", response?.data?.token);
           reset();
           toast.success("Registration Successful!");
-          setTimeout(() => {
+          // setTimeout(() => {
             router.push("/chat");
-          }, 1000);
+        setLoading(false);
+
+          // }, 1000);
         } else {
           toast.error(response?.data?.error);
         }
       } catch (error) {
         console.log(error);
+        setLoading(false);
+
       }
     }
   };
@@ -107,12 +114,12 @@ function LandingPage() {
 
   return (
     <div className="flex min-h-screen md:flex-row flex-col">
-      <div className="md:w-[60%] bg-[#f9818b] flex items-center justify-center">
+      <div className="md:w-[60%] bg-[#f9818b] md:flex items-center justify-center hidden">
         <div className="w-[60%] m-auto">
           <Lottie options={defaultOptions1} />
         </div>
       </div>
-      <div className="md:w-[40%] md:px-10 md:py-4">
+      <div className="md:w-[40%] md:px-10 md:py-4 px-4 py-8">
         <Image src={Logo} width={150} alt=""></Image>
         <p className="text-base font-extrabold pt-4">Sign Up</p>
         <p className="text-xs text-[#838186]">
@@ -338,6 +345,7 @@ function LandingPage() {
         </form>
       </div>
       <ToastContainer />
+      {loading && <Loader/>}
     </div>
   );
 }
