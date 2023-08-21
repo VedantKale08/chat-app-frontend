@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.input-group{
+    position: relative;
+}
+
+
+.input{
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #C0C0C0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.placeholder{
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    color: #808080;
+    font-size: 14px;
+    padding: 0px 5px;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.input:focus ~ .placeholder,
+.input:valid~.placeholder{
+    top: -12px;
+    color: gray;
+    background: #fff;
+}
+
+.chat-bg{
+    position: relative;
+} 
+
+.chat-bg:before{
+    content:"";
+    position: absolute;
+    inset:0;
+    background: url('../lotties/bg.png');
+    opacity: 0.4;
+    z-index: 1;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    /* overflow-x: hidden; */
+    font-family: 'Poppins', sans-serif;
+    -ms-overflow-style: none !important;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none !important;
+    /* Firefox */
+}
+
+/* width height */
+::-webkit-scrollbar {
+    height: 6px;
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #e2e8f0;
+    border-radius: 10px;
+}
+
+
+.scrollbar-none::-webkit-scrollbar {
+    display: none !important;
+    /* Safari and Chrome */
+}
+
+.scrollbar-none {
+    -ms-overflow-style: none !important;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none !important;
+    /* Firefox */
+}
+
+.box-shadow{
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+}

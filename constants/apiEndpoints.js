@@ -1,0 +1,10 @@
+export const login = '/login';
+export const registerUser = "/register";
+export const user = "/user";
+export const getAllUsers = "/get-all-user";
+export const accessChatApi = "/access-chat";
+export const fetchChatApi = "/fetch-chats";
+export const group = "/group";
+export const rename = "/rename";
+export const updateChat = "/update-chat";
+export const messageApi = "/message";
