@@ -19,6 +19,7 @@ function SearchPopup({ setPopup, fetchChat = () => void 0 }) {
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [isChatLoading, setChatLoading] = useState(false);
+  const setChatId = chatStore((state) => state.setChatId);
 
   const user = useUserStore((state) => state.user);
   const setSelectedChat = chatStore((state) => state.setSelectedChat);
@@ -79,6 +80,7 @@ function SearchPopup({ setPopup, fetchChat = () => void 0 }) {
             : response?.data?.chat?.users[0]
         );
         setPopup(false);
+        setChatId(response?.data?.chat?._id);
         window.history.back();
         setChatLoading(false);
       }
