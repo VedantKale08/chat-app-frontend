@@ -61,7 +61,7 @@ function ChatList() {
 
   return (
     <div
-      className={`md:w-[312px] px-4 py-4 bg-[#eee]  flex-col gap-6 ${
+      className={`md:w-[312px] w-full px-4 py-4 bg-[#eee]  flex-col gap-6 ${
         isEmpty(selectedChat) ? "flex" : " hidden md:flex"
       }`}
     >
