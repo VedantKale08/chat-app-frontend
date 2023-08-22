@@ -54,9 +54,10 @@ function Chat({ data }) {
 
   useEffect(() => {
     socket = io(ENDPOINT);
-    console.log("_______________socket => " + socket);
+    console.log("_______________socket => " + JSON.stringify(socket));
     socket.emit("setup", data);
     socket.on("connected", () => {
+      console.log("connected");
       setSocketConnected(true);
     });
   }, []);
