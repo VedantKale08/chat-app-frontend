@@ -180,7 +180,7 @@ function Chat({ data }) {
       {!isEmpty(selectedChat) && selectedChat?._id !== user?._id && (
         <>
           <div
-            className="flex items-center capitalize px-3 bg-white  py-4 cursor-pointer box-shadow md:relative sticky top-0 right-0 left-0 z-[1000]"
+            className="flex items-center capitalize px-3 bg-white  py-4 cursor-pointer box-shadow md:relative fixed top-0 right-0 left-0 z-[1000]"
             onClick={() => {
               SetIsProfile(true);
               // isMobile ? window.history.pushState("#", null, null) :void 0
@@ -216,7 +216,7 @@ function Chat({ data }) {
               <Loader />
             </div>
           )}
-          <div className="bg-white p-2 px-4 md:relative sticky bottom-0 z-[1000]">
+          <div className="bg-white p-2 px-4 md:relative fixed bottom-0 z-[1000]">
             <form onClick={sendMessage} className=" flex gap-2">
               <div className="w-full bg-[#eee] py-3 px-4 rounded-full flex items-center gap-2">
                 <BsEmojiSmile className="text-gray-500 text-lg cursor-pointer" />
