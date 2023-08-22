@@ -207,7 +207,7 @@ function Chat({ data }) {
             <BsThreeDotsVertical className="ml-auto cursor-pointer" />
           </div>
           {!isLoading && (
-            <ScrollToBottom className="flex-1 z-50 overflow-auto p-4 md:top-0 top-[72px] md:bottom-0 bottom-[64px] md:mn-0 mb-[140px]">
+            <ScrollToBottom className="flex-1 z-50 overflow-auto p-4 md:top-0 top-[72px] md:bottom-0 bottom-[64px] md:mb-0 mb-[140px]">
               <ChatSection allMessages={allAllMessages} />
             </ScrollToBottom>
           )}
