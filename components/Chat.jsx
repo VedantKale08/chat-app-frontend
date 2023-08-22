@@ -54,6 +54,7 @@ function Chat({ data }) {
 
   useEffect(() => {
     socket = io(ENDPOINT);
+    console.log("_______________socket => " + socket);
     socket.emit("setup", data);
     socket.on("connected", () => {
       setSocketConnected(true);
@@ -143,7 +144,9 @@ function Chat({ data }) {
   };
 
   useEffect(() => {
+    console.log("_______________USEEFFECT");
     socket.on('message received', (newMessage) =>{
+    console.log("_______________new message => " + newMessage);
         if (isEmpty(selectedChat) || chatId !== newMessage.chat._id) {
           setNotifications([...notifications, newMessage]);
           fetchChat();
