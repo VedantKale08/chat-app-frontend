@@ -29,6 +29,7 @@ function LandingPage() {
   const [confirmType, setConfirmType] = useState(true);
   const [loading, setLoading] = useState(false);
   const [image, setImage] = useState(null);
+  const SetIsProfile = useUserStore((state) => state.setIsProfile);
 
   const {
     register,
@@ -54,8 +55,8 @@ function LandingPage() {
           reset();
           toast.success("Registration Successful!");
           // setTimeout(() => {
-            router.push("/chat");
-        setLoading(false);
+          router.push("/chat");
+          setLoading(false);
 
           // }, 1000);
         } else {
@@ -64,7 +65,6 @@ function LandingPage() {
       } catch (error) {
         console.log(error);
         setLoading(false);
-
       }
     }
   };
@@ -111,6 +111,10 @@ function LandingPage() {
       toast.warn("Invalid Image!");
     }
   };
+
+  useEffect(() => {
+    SetIsProfile(false);
+  }, []);
 
   return (
     <div className="flex min-h-screen md:flex-row flex-col">
@@ -345,10 +349,9 @@ function LandingPage() {
         </form>
       </div>
       <ToastContainer />
-      {loading && <Loader/>}
+      {loading && <Loader />}
     </div>
   );
 }
 
 export default LandingPage;
-

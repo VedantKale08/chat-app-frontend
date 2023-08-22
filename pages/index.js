@@ -3,7 +3,7 @@ import Image from "next/image";
 import Lottie from "react-lottie";
 import Logo from "../lotties/chat-logo.png";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -21,6 +21,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const setUser = useUserStore((state) => state.setUser);
+  const SetIsProfile = useUserStore((state) => state.setIsProfile);
 
   const {
     register,
@@ -28,6 +29,10 @@ export default function Home() {
     formState: { errors },
     reset,
   } = useForm();
+
+    useEffect(() => {
+      SetIsProfile(false);
+    }, []);
 
   const togglePassword = (id) => {
     let input = document.getElementById(id);
