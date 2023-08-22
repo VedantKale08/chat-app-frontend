@@ -180,7 +180,7 @@ function Chat({ data }) {
       {!isEmpty(selectedChat) && selectedChat?._id !== user?._id && (
         <>
           <div
-            className="flex items-center capitalize px-3 bg-white  py-4 cursor-pointer box-shadow md:relative fixed top-0 right-0 left-0 z-[100000]"
+            className="flex items-center capitalize px-3 bg-white  py-4 cursor-pointer box-shadow md:relative fixed top-0 right-0 left-0 z-[1000]"
             onClick={() => {
               SetIsProfile(true);
               // isMobile ? window.history.pushState("#", null, null) :void 0
@@ -197,7 +197,7 @@ function Chat({ data }) {
             </div>
             {!selectedChat?.isGroupChat ? (
               <span className="px-4 text-[#1B2430]">
-                {selectedChat?.fname}{" "}{selectedChat?.lname}
+                {selectedChat?.fname} {selectedChat?.lname}
               </span>
             ) : (
               <span className="px-4 text-[#1B2430]">
