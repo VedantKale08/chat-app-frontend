@@ -96,6 +96,7 @@ function Chat({ data }) {
   }, [selectedChat]);
 
   const sendMessage = async (e) => {
+    setAllAllMessages([]);
     e.preventDefault();
     if (message) {
       try {
