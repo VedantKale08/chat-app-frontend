@@ -12,6 +12,7 @@ export default function App({ Component, pageProps }) {
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
           rel="stylesheet"
         ></link>
+        <title>Chit Chat</title>
       </Head>
       <Component {...pageProps} />
     </>

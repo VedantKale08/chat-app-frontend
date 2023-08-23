@@ -97,8 +97,8 @@ function Chat({ data }) {
   }, [selectedChat]);
 
   const sendMessage = async (e) => {
-    setAllAllMessages([]);
-    setAllMessages([]);
+    // setAllAllMessages([]);
+    // setAllMessages([]);
     e.preventDefault();
     if (message) {
       try {
@@ -220,7 +220,7 @@ function Chat({ data }) {
             </div>
           )}
           <div className="bg-white p-2 px-4 md:relative fixed bottom-0 z-[1000]">
-            <form onClick={sendMessage} className=" flex gap-2">
+            <form onSubmit={sendMessage} className=" flex gap-2">
               <div className="w-full bg-[#eee] py-3 px-4 rounded-full flex items-center gap-2">
                 <BsEmojiSmile className="text-gray-500 text-lg cursor-pointer" />
                 <input
