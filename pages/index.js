@@ -59,6 +59,7 @@ export default function Home() {
         // }, 1000);
       } else {
         toast.error(response?.data?.error);
+      setLoading(false);
       }
     } catch (error) {
       console.log(error);
