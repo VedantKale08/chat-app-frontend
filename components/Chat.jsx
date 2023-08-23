@@ -65,6 +65,7 @@ function Chat({ data }) {
 
   const fetchMessages = async () => {
     setAllMessages([]);
+    setAllAllMessages([]);
     if (!isEmpty(selectedChat)) {
       setLoading(true);
       try {
